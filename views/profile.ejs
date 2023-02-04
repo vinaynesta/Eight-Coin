@@ -1,0 +1,276 @@
+
+<%- include('partials/header')  %>
+
+<% let a = user._doc %>
+<div class="main">
+
+    <section class="sign-in">
+        <div class="container1">
+            <div class="row profile">
+                <div class="col-sm-12">
+                    <div class="col-sm-5" >
+                        <div class="prof-links prof-links1 prof-links2">
+                            <div id="ep" onclick="myFunction(this.id)">
+                                <i class="fa fa-user-circle-o" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Edit Profile</span>
+                            </div>
+                            <div id="cx" onclick="myFunction(this.id)">
+                                <i class="fa fa-money" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Cash-Coin Exchange</span>
+                            </div>
+                            <div id="ct" onclick="myFunction(this.id)">
+                                <i class="fa fa-money" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Coin Transfer</span>
+                            </div>
+                            <!-- <div id="dss" onclick="myFunction(this.id)"> 
+                                <i class="fa fa-user-circle-o" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Digital Signature Sign</span>
+                            </div>
+                            <div id="dsv" onclick="myFunction(this.id)">
+                                <i class="fa fa-user-circle-o" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Digital Signature Verify</span>
+                            </div> -->
+                            <div id="mp" onclick="myFunction(this.id)">
+                                <i class="fa fa-user-circle-o" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Mining Portal</span>
+                            </div>
+                            <div id="cashtrans" onclick="myFunction(this.id)">
+                                <i class="fa fa-user-circle-o" style="font-size: 26px  !important;" aria-hidden="true"></i>
+                                <span style="font-size: 16px  !important; margin-left: 16px;">Cash Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7" >
+                        <div id="ep1">
+                            <h2 class="form-title">Edit / Update Profiles</h2>
+                            <form  class="register-form" id="ep11" style="width: 60%;" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="firstName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="name"  placeholder="Your First Name" value="<%= a.name %>"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <% var currentDate = new Date(a.dateOfBirth); %>
+                                    <% var cd= currentDate.toLocaleDateString('en-US'); %>
+                                    <% cd = cd.split("/")%>
+                                    <% cd = cd[2]+"-"+cd[0]+"-"+cd[1] %>
+                                    <label for="dateOfBirth"><i class="fa fa-calendar-o"></i></label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" value="<%= cd %>"  placeholder="Your Date Of Birth"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobileNumber"><i class="fa fa-phone"></i></label>
+                                    <input type="number" name="mobileNumber" value="<%= a.mobileNumber%>" placeholder="Your Mobile Number"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName"><i class="fa fa-camera"></i></label>
+                                    <input type="file" name="photo" value="<%= a.photo %>" accept="image/*" id="photo" placeholder="choose photo"/>
+                                    
+                                </div>
+                            </form>
+                            <div class="form-group form-button">
+                                <button class="form-submit" id="edit-details">Update</button>
+                            </div>
+                        </div>                  
+                        <div id="cx1">
+                            <h2 class="form-title">Cash Coin Exchange</h2>
+                            <form  class="register-form" id="cx11" style="width: 60%;">
+                            <div class="form-group">
+                                <label for="amount"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="number" name="amount" id="amount" placeholder="Enter amount"/>
+                            </div>
+                            <div class="form-group" id="getbal" data-coin="<%= a.coinBalance %>">
+                                <label for="currencies"></label>
+                                <select id="currencies" name="currencies" >
+                                <option value="india">Indian Rupee INR</option>
+                                <option value="china">Chinese Yuan Renminbi CNY</option>
+                                <option value="mexico">Mexican Peso MXN</option>
+                                <option value="malaysia">Malaysian Ringgit MYR</option>
+                                <option value="egypt">Egyptian Pound EGP</option>
+                                <option value="saudiarabia">Saudi Riyal SAR</option>
+                                <option value="pakisthan">Pakistan Rupee PKR</option>
+                                <option value="iraq">Iraqi Dinar IQD</option>
+                                <option value="europe">Euro EUR</option>
+                                <option value="swizerland">Swiss Franc CHF</option>
+                                <option value="usa">US Dollar USD</option>
+                                <option value="canada">Canadian Dollar CAD</option>
+                                <option value="australia">Australian Dollar AUD</option>
+                                <option value="singapore">Singapore Dollar SGD</option>
+                                <option value="newzealand">New Zealand Dollar NZD</option>
+                                <option value="brazil">Brazilian Real Currency BRL</option>
+                                <option value="israel">Israel New Shekel ILS</option>
+                                <option value="southafrica">South African Rand ZAR</option>
+                                <option value="russia">Russian Ruble RUB</option>
+                                <option value="uk">Pound Sterling GBP</option>
+                                <option value="japan">Japanese yen YEN</option>
+                                </select><br><br>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="margin-right: 10px;">No of coins:</div>
+                                <div id="setCurrVal">0</div>
+                            </div>
+                            </form>
+                            <div class="form-group form-button">
+                                <button class="form-submit" id="buy-button">Buy</button>
+                            </div>
+                        </div>
+                        <div id="ct1">
+                            <h2 class="form-title">Coin Transfer</h2>
+                            <form  class="register-form" id="ct11" style="width: 60%;">
+                                <div style="display: flex;">Available Balance: <div id="bal" style="margin-left: 5px;"><%= a.coinBalance %></div></div>
+                                <div class="form-group">
+                                    <label for="receiverPublicAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="receiverPublicAddress" id="receiverPublicAddress" placeholder="Enter Receiver Public Address"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="numberOfCoins"><i class="zmdi zmdi-email"></i></label>
+                                    <input type="text" name="sentCoins" id="numberOfCoins" placeholder="Enter Number Of Coins"/>
+                                </div>
+                        
+                            </form>
+                            <div class="form-group form-button" data-publickey="<%= a._id %>" id="ads1">
+                                <button class="form-submit" id="ads">Transfer Coins</button>
+                            </div>
+                        </div>
+                        <div id="dss1">
+                            <h2 class="form-title">Digital Signature Sign</h2>
+                            <form  class="register-form" id="dss11" style="width: 60%;">
+                                <div class="form-group">
+                                    <label for="privateAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="privateAddress" id="privateAddress" placeholder="Enter Your Private Key"/>
+                                </div>
+                            
+                                <div class="form-group form-button">
+                                    <input type="submit" name="digitalSignatureSign" id="digitalSignatureSign" class="form-submit" value="Sign"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="cashtrans1">
+                            <h2 class="form-title">Cash Transfer</h2>
+                            <form  class="register-form" id="cashtrans11" style="width: 60%;">
+                                <div class="form-group">
+                                    <label for="receiverPublicAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="receiverPublicAddress" id="receiverPublicAddress1" placeholder="Enter Receiver Public Address"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="amount"><i class="zmdi zmdi-email"></i></label>
+                                    <input type="text" name="amount" id="amount1" placeholder="Enter Amount"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="currencies"></label>
+                                    <select id="currencies1">
+                                        <option>Select Currency</option>
+                                        <option value="india">Indian Rup INR</option>
+                                        <option value="china">Chinese Yuan Renminbi CNY</option>
+                                        <option value="mexico">Mexican Peso MXN</option>
+                                        <option value="malaysia">Malaysian Ringgit MYR</option>
+                                        <option value="egypt">Egyptian Pound EGP</option>
+                                        <option value="saudi arabia">Saudi Riyal SAR</option>
+                                        <option value="pakisthan">Pakistan Rupee PKR</option>
+                                        <option value="iraq">Iraqi Dinar IQD</option>
+                                        <option value="europe">Euro EUR</option>
+                                        <option value="swizerland">Swiss Franc CHF</option>
+                                        <option value="usa">US Dollar USD</option>
+                                        <option value="canada">Canadian Dollar CAD</option>
+                                        <option value="australia">Australian Dollar AUD</option>
+                                        <option value="singapore">Singapore Dollar SGD</option>
+                                        <option value="new zealand">New Zealand Dollar NZD</option>
+                                        <option value="brazil">Brazilian Real Currency BRL</option>
+                                        <option value="israel">Israel New Shekel ILS</option>
+                                        <option value="south africa">South African Rand ZAR</option>
+                                        <option value="russia">Russian Ruble RUB</option>
+                                        <option value="uk">Pound Sterling GBP</option>
+                                        <option value="japan">Japanese yen YEN</option>
+                                    </select><br><br>
+                                </div>
+                            </form>
+                            <div style="display: flex;">
+                                <div style="margin-right: 10px;">No of coins:</div>
+                                <div id="setCurrVal1">0</div>
+                            </div>
+                            <div class="form-group form-button">
+                                <button class="form-submit" id="transfer-cash">Transfer Cash</button>
+                            </div>
+                        </div>
+                        <div id="dsv1">
+                            <h2 class="form-title">Digital Signature Verify</h2>
+                            <form  class="register-form" id="dsv11" style="width: 60%;">
+                                <div class="form-group">
+                                    <label for="publicAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="publicAddress" id="publicAddress" placeholder="Enter Your Public Address"/>
+                                </div>
+                            
+                                <div class="form-group form-button">
+                                    <input type="submit" name="digitalSignatureVerify" id="digitalSignatureVerify" class="form-submit" value="Verify"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="mp1">
+                            <h2 class="form-title">Mining Portal</h2>
+                            <form  class="register-form" id="mp11" style="width: 60%;">
+                                <div class="form-group">
+                                    <label for="magicNumber"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="magicNumber" id="magicNumber" placeholder="Enter Magic Number"/>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="miningPortal" id="miningPortal" class="form-submit" value="Verify"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="publicAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="publicAddress" id="publicAddress" placeholder="Enter Your Public Address"/>
+                                </div>
+                            
+                                <div class="form-group form-button">
+                                    <input type="submit" name="miningPortal" id="miningPortal" class="form-submit" value="Submit"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+</div>
+
+<script>
+    document.getElementById("ep1").style.display ="block"
+  document.getElementById("ct1").style.display ="none"
+  document.getElementById("cx1").style.display ="none"
+  document.getElementById("dss1").style.display ="none"
+  document.getElementById("dsv1").style.display ="none"
+  document.getElementById("mp1").style.display ="none"
+  document.getElementById("cashtrans1").style.display ="none"
+
+function myFunction(id) {
+  var x = document.getElementById(id);
+  document.getElementById("ep1").style.display ="none"
+  document.getElementById("ct1").style.display ="none"
+  document.getElementById("cx1").style.display ="none"
+  document.getElementById("dss1").style.display ="none"
+  document.getElementById("dsv1").style.display ="none"
+  document.getElementById("mp1").style.display ="none"
+  document.getElementById("cashtrans1").style.display ="none"
+  document.getElementById(id+"1").style.display ="block"
+  
+}
+
+
+    
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Font Icon -->
+<link rel="stylesheet" href="logFiles/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="logFiles/css/style.css">
+<script src="logFiles/vendor/jquery/jquery.min.js"></script>
+<script src="logFiles/js/main.js"></script>
+
+<%- include('partials/footer') %>

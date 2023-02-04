@@ -1,0 +1,54 @@
+
+<%- include('partials/header')  %>
+<% let a = user._doc %>
+<div class="main">
+
+    <section class="sign-in">
+        <div class="container1" style="width: 655px;">
+            <div class="row profile">
+                <div class="col-sm-12">
+                    <center><h2>Pay Merchant</h2></center>
+                    <div style="margin-top: 50px;display: flex;flex-direction: column;align-items: center;">
+                        <form  class="register-form" id="ct11" style="width: 60%;">
+                            <div style="margin-bottom: 15px;font-size: 14px;">Order Name:<span style="margin-left: 5px;" id="orderName"></span></div>
+                            <div class="form-group" data-publickey="<%= a._id %>" id="puk">
+                                <label for="receiverPublicAddress"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="receiverPublicAddress" disabled style="
+                                background-color: #e2e2e2;
+                                " id="receiverPublicAddress" placeholder="62b1f1bd0dc1b2968dfb6447" value="62b1f1bd0dc1b2968dfb6447"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="numberOfCoins"><i class="zmdi zmdi-email"></i></label>
+                                <input type="text" name="sentCoins" disabled style=" background-color: #e2e2e2;" id="numberOfCoins" placeholder="Coins" />
+                            </div>
+                    
+                        </form>
+                        <div class="form-group form-button" data-publickey="<%= a._id %>" id="ads1">
+                            <button class="form-submit" id="pay">Pay</button>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Font Icon -->
+<link rel="stylesheet" href="logFiles/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="logFiles/css/style.css">
+<script src="logFiles/vendor/jquery/jquery.min.js"></script>
+<script src="logFiles/js/main.js"></script>
+<%- include('partials/footer') %>

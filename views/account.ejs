@@ -1,0 +1,85 @@
+
+<%- include('partials/header')  %>
+<% let a = user._doc %>
+
+<div class="main">
+
+    <section class="sign-in">
+        <div class="container1">
+            <div class="row profile">
+                <div class="col-sm-12">
+                    <div class="col-sm-4" >
+                        <div>
+                            <img src="img/users/<%= a.photo %>" alt="Avatar" style="width:200; border-radius: 50%;">
+                            <div class="prof-name">
+                                <center><span id="user-profile" style="font-size: 18px;text-transform: capitalize;cursor: pointer;" data-val="<%= a.cpin %>"><%= a.name %></span></center>
+                                <center><span style="font-size: 14px;"><%= a._id %></span></center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8" style="margin-top: 30px;">
+                        <div class="prof-links">
+                            
+                            <div class="prof-links">
+                                <div class="row">
+                                    <div class="col-sm-6 prof-links" >
+                                        <span style="font-size: 18px;">Balance :</span>
+                                        <span style="font-size: 14px;"><%= a.coinBalance %></span>
+                                    </div>
+                                    <div class="col-sm-6" id="private-key" style="border-left: 1px solid grey;">
+                                        <span style="font-size: 18px;">Private Key :</span>
+                                        <span style="font-size: 12px;">
+                                            <span id="pk1">XXXXXXXXXXXXXXXXXXXXXXX</span>
+                                            <i class="fa fa-eye" id="eye" aria-hidden="true" style="cursor: pointer;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="prof-links prof-links1" style="margin-top: 30px;">
+                                <div>
+                                    <i class="fa fa-credit-card-alt" style="font-size: 18px  !important;" data-key="<%= a.privateKey %>" id="pk2" aria-hidden="true"></i>
+                                    <a href="/clothes"><span style="font-size: 16px  !important; margin-left: 16px;">E-Store</span></a>
+                                </div>
+                                <div>
+                                    <i class="fa fa-exchange" style="font-size: 18px  !important;" aria-hidden="true"></i>
+                                    <a href="/bookstore"><span style="font-size: 16px  !important; margin-left: 16px;">E-Book Store</span></a>
+                                </div>
+                                <div>
+                                    <i class="fa fa-book" style="font-size: 18px  !important;" aria-hidden="true"></i>
+                                    <a href="/orders?id=<%= a._id %>"><span style="font-size: 16px  !important; margin-left: 16px;cursor: pointer;">Orders</span></a>
+                                </div>
+                            </div>
+                            <div style="margin-top: 30px;">
+                                <center>
+                                    <div class="form-group form-button">
+                                        <button class="form-submit" onclick="location.assign(`/ledger`)">Ledger</button>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Font Icon -->
+<link rel="stylesheet" href="logFiles/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="logFiles/css/style.css">
+<script src="logFiles/vendor/jquery/jquery.min.js"></script>
+<script src="logFiles/js/main.js"></script>
+<%- include('partials/footer') %>
